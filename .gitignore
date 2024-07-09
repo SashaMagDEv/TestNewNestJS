@@ -1,0 +1,11 @@
+/node_modules/
+logs/
+*.log
+jspm_packages/
+.npm
+.node_repl_history
+.DS_Store
+.env
+dist/
+build/
+*.tmp

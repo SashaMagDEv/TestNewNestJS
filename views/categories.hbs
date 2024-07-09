@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>All Categories</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1 class="my-4 text-center">All Categories</h1>
+    <div class="row">
+      {{#each categories}}
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title text-center">
+                <a href="/categories/{{this.id}}/news">{{this.name}}</a>
+              </h5>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+</body>
+</html>
