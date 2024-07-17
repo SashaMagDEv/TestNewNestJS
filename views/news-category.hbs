@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ category.name }}</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center my-4">News in {{ category.name }}</h1>
+        <a href="/categories/{{ category.id }}/add-news" class="btn btn-primary mb-4">Add News</a>
+        <div class="row">
+            {{#each news.data}}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="{{ this.thumbnail }}" class="card-img-top" alt="Thumbnail">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="/news/{{ this.id }}">{{ this.title }}</a>
+                            </h5>
+                            <p class="card-text">{{ this.short_description }}</p>
+                            <p class="card-text">Likes: {{ this.likes }}</p>
+                            <p class="card-text">Date: {{ this.date }}</p>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+        <div class="pagination-wrapper">
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item {{firstPageClass}}">
+                        <a class="page-link" href="/categories/{{category.id}}/news?page=1">First</a>
+                    </li>
+                    <li class="page-item {{prevPageClass}}">
+                        <a class="page-link" href="{{previousPageUrl}}">Previous</a>
+                    </li>
+
+                    {{#each pages}}
+                        <li class="page-item {{active}}">
+                            <a class="page-link" href="/categories/{{../category.id}}/news?page={{number}}">{{number}}</a>
+                        </li>
+                    {{/each}}
+
+                    <li class="page-item {{nextPageClass}}">
+                        <a class="page-link" href="{{nextPageUrl}}">Next</a>
+                    </li>
+                    <li class="page-item {{lastPageClass}}">
+                        <a class="page-link" href="/categories/{{category.id}}/news?page={{totalPages}}">Last</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</body>
+</html>
