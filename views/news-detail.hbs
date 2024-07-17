@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ news.title }}</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center my-4">{{ news.title }}</h1>
+        <div class="card">
+            <img src="{{ news.thumbnail }}" class="card-img-top" alt="Thumbnail">
+            <div class="card-body">
+                <h5 class="card-title">{{ news.title }}</h5>
+                <p class="card-text">{{ news.short_description }}</p>
+                <p class="card-text">Likes: {{ news.likes }}</p>
+                <p class="card-text">Date: {{ news.date }}</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
