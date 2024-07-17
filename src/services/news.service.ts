@@ -1,4 +1,4 @@
-import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
+import {Injectable, HttpException, HttpStatus, Delete, Param} from '@nestjs/common';
 import { NewsDto } from '../dto/news.dto'; // Обновите путь к вашему DTO
 import axios from 'axios';
 
@@ -60,6 +60,18 @@ export class NewsService {
         } catch (error) {
             console.error('Error updating news:', error);
             throw new HttpException('Failed to update news', HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    async deleteNews(id: number) {
+        try {
+            const response = await axios.delete(`http://localhost:8000/api/news/${id}`);
+            if (response.status !== 200) {
+                throw new HttpException('Failed to delete news', HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } catch (error) {
+            console.error('Error deleting news:', error);
+            throw new HttpException('Failed to delete news', HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

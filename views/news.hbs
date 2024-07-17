@@ -17,8 +17,16 @@
         </div>
       </div>
     </div>
-    <div class="row">
-    <a href="/news/{{news.id}}/edit" class="btn btn-primary mt-3">Edit</a>
+    <div class="row justify-content-center pb-4">
+      <div class="col-md-4">
+        <a href="/news/{{news.id}}/edit" class="btn btn-primary mt-3 w-100">Edit</a>
+      </div>
+      <div class="col-md-4">
+      <form action="/news/{{ news.id }}/delete" method="post">
+          <input type="hidden" name="_method" value="DELETE">
+          <button class="btn btn-danger mt-3 w-100" type="submit">Delete</button>
+      </form>
+      </div>
     </div>
   </div>
 </body>

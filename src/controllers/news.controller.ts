@@ -1,4 +1,16 @@
-import {Controller, Get, Param, Post, Body, Render, Res, Query} from '@nestjs/common';
+import {
+    Controller,
+    Get,
+    Param,
+    Post,
+    Body,
+    Render,
+    Res,
+    Query,
+    Delete,
+    HttpException,
+    HttpStatus
+} from '@nestjs/common';
 import { NewsService } from '../services/news.service';
 import { Response } from 'express';
 
@@ -33,6 +45,18 @@ export class NewsController {
         } catch (error) {
             console.error('Error updating news:', error);
             return res.render('edit-news', { error: 'Failed to update news', news: updateData });
+        }
+    }
+
+    @Post(':id/delete')
+    async deleteNews(@Param('id') id: number, @Res() res: Response) {
+        try {
+            const news = await this.newsService.getNewsDetail(id);
+            await this.newsService.deleteNews(id);
+            return res.redirect(`/categories/${news.category_id}/news`);
+        } catch (error) {
+            console.error('Error deleting news:', error);
+            throw new HttpException('Failed to delete news', HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
